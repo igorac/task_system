@@ -16,14 +16,14 @@ class TaskSeeder extends Seeder
             'descricao' => 'Tomar Banho',
             'status' => 0,
             'user_id' => 1,
-            'data_criada' => now()
+            'data_criacao' => now()
         ]);
 
         DB::table('tasks')->insert([
             'descricao' => 'Lavar o carro',
             'status' => 1,
             'user_id' => 1,
-            'data_criada' => now(),
+            'data_criacao' => now(),
             'data_executada' => now()
         ]);
     }

@@ -146,13 +146,13 @@ function montarTable(tasks) {
             let status = (task.status) ? 'Realizado' : 'Pendente';
             let classStatus = (task.status) ? 'bg-purple' : 'bg-dark';
             let data_executada = (task.data_executada === null) ? '' : formatarDataHora(task.data_executada);
-            let data_criada = formatarDataHora(task.data_criada);
+            let data_criacao = formatarDataHora(task.data_criacao);
 
             $('#tasks').append(`
                 <tr data-row=${task.id}>
                 <td> ${task.id} </td>
                 <td> ${task.descricao} </td>
-                <td> ${data_criada}</td>
+                <td> ${data_criacao}</td>
                 <td> ${data_executada}</td>
                 <td><span class="badge text-white ${classStatus}"> ${status}</span></td>
                 <td>
