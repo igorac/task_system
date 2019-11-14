@@ -10,24 +10,25 @@ use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
-
-    // Criar um middleware auth
-
     public function index()
     {
-        if (Auth::check()) {
-            $tasks = Task::all()->where('user_id', Auth::user()->id);
-            return view('task.home');
-        }
-        return redirect()->route('login');
+        // if (Auth::check()) {
+            if (isset(Auth::user()->id)) {
+                $tasks = Task::all()->where('user_id', Auth::user()->id);
+                return view('task.home');
+            }
+        // }
+        // return redirect()->route('login');
     }
 
     public function tasksJson()
     {
-        if (Auth::check()) {
-            return Task::all()->where('user_id', Auth::user()->id);
-        }
-        return redirect()->route('login');
+        // if (Auth::check()) {
+            if (isset(Auth::user()->id)) {
+                return Task::all()->where('user_id', Auth::user()->id);
+            }
+        // }
+        // return redirect()->route('login');
     }
 
     public function store(StoreTask $request)
