@@ -160,8 +160,14 @@ function carregarTarefas() {
     url: '/tasks',
     method: 'get',
     dataType: 'json',
+    beforeSend: function() {
+      $('.loader').show();
+    },  
     success: (response) => {
+      setTimeout( ()=> {
         montarTable(response);
+        $('.loader').hide();
+      }, 2000)
     },
     error: (error) => {
         console.log(error);
@@ -183,7 +189,7 @@ function montarTable(tasks) {
     $.each(tasks, (key, task) => {
         let status = (task.status) ? 'Realizado' : 'Pendente';
         let classStatus = (task.status) ? 'bg-purple' : 'bg-dark';
-        let classIcon   = (task.status) ? 'fas fa-window-close' :'fa fa-check-square';
+        let classIcon   = (task.status) ? 'fa fa-pen-square' :'fa fa-check-square';
         let data_executada = (task.data_executada === null) ? '' : moment(task.data_executada).format("DD/MM/YYYY HH:mm:ss");
         let data_criacao = moment(task.data_criacao).format("DD/MM/YYYY HH:mm:ss");
 

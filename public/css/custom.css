@@ -1,18 +1,52 @@
 .body {
-    font-family: 'Nunito', sans-serif;
-  }
-  .bg-purple {
-    background-color: #6c5ce7;
-  }
+  font-family: 'Nunito', sans-serif;
+}
+.bg-purple {
+  background-color: #6c5ce7;
+}
 
-  .info-user {
-    color: #fff;
-    font-size: 1.4rem;
-  }
+.info-user {
+  color: #fff;
+  font-size: 1.4rem;
+}
 
-  .link-logout {
-   font-size: 1.4rem;
-  }
-  .link-logout > a {
-    text-decoration: none;
-  }
+.link-logout {
+ font-size: 1.4rem;
+}
+.link-logout > a {
+  text-decoration: none;
+}
+
+.loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, .8) url('../images/loading.gif') 50% 50% no-repeat;        
+}
+
+.btn-custom-add {
+  outline: none;
+  border:none;
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+  transition: all .20s;
+}
+.btn-custom-add:hover {
+  position: relative;
+  top: -10px;
+  left: -5px;
+  -webkit-box-shadow: 11px 10px 21px -10px rgba(0,0,0,0.75);
+  -moz-box-shadow: 11px 10px 21px -10px rgba(0,0,0,0.75);
+  box-shadow: 11px 10px 21px -10px rgba(0,0,0,0.75);
+}
+.btn-custom-add > i {
+  color: #fff;
+  font-size: 2.5rem;
+}
+
+.text-username {
+  text-transform: capitalize;
+}

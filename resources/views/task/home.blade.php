@@ -28,15 +28,17 @@
           </tbody>
         </table>
 
-        <div class="message alert text-center" style="display:none"></div>
         <div class="message-empty alert text-center" style="display:none"></div>
-
+        <div class="loader"></div>
+        
       </div>
     </div>
 
     <div class="text-right">
-      <button class="btn-custom-add btn bg-purple text-white my-3 mr-4"><i class="fa fa-plus-circle"></i></button>
+      <button class="btn-custom-add bg-purple text-white my-3 mr-4"><i class="fa fa-plus"></i></button>
     </div>
+
+    <div class="message alert text-center" style="display:none"></div>
   </section>
 
   <div class="modal" tabindex="-1" role="dialog" id="modalAddTask">
