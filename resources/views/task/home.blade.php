@@ -70,16 +70,13 @@
 
             <div class="form-group">
               <label for="data_executada">Data Executada</label>
-              <input type="datetime-local" name="data_executada1" id="data_executada1" class="form-control" step="1">
               <div class="row">
-                {{-- <input type="text" name="data_executada" id="data_executada" class="form-control col-sm-5 ml-3 mr-3 datetimepicker-input"> --}}
-                <div class="input-group date col-6" id="data_executada" data-target-input="nearest">
-                  <input type="text" class="form-control datetimepicker-input" name="data_executada" data-target="#data_executada"/>
-                  <div class="input-group-append" data-target="#data_executada" data-toggle="datetimepicker">
+                <div class="input-group date col-6" id="input_data_executada" data-target-input="nearest">
+                  <input type="text" class="form-control datetimepicker-input" name="data_executada" id="data_executada" data-target="#input_data_executada"/>
+                  <div class="input-group-append" data-target="#input_data_executada" data-toggle="datetimepicker">
                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                   </div>
                 </div>
-                {{-- <input type="text" name="hora_executada" id="hora_executada" class="form-control col-sm-3"> --}}
               </div>
             </div>
             

@@ -1,0 +1,18 @@
+.body {
+    font-family: 'Nunito', sans-serif;
+  }
+  .bg-purple {
+    background-color: #6c5ce7;
+  }
+
+  .info-user {
+    color: #fff;
+    font-size: 1.4rem;
+  }
+
+  .link-logout {
+   font-size: 1.4rem;
+  }
+  .link-logout > a {
+    text-decoration: none;
+  }

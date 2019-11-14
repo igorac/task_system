@@ -140,7 +140,8 @@ $(function(){
   });
 
 
-  // Adicionando a biblioteca do datetimepicker no input
+  // Adicionando a biblioteca do datetimepicker
+  // no input
   $('#input_data_executada').datetimepicker({
     sideBySide: true,
     locale: 'pt-br',

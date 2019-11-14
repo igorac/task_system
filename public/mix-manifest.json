@@ -1,4 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/css/custom.css": "/css/custom.css",
+    "/css/DateTimePicker.css": "/css/DateTimePicker.css",
+    "/js/task.js": "/js/task.js"
 }

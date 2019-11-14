@@ -11,46 +11,60 @@ use Carbon\Carbon;
 
 class TaskController extends Controller
 {
-    public function index()
+    /**
+     * Responsável por verificar se a requisição é um JSON ou não
+     * em caso de TRUE -> é retornado os dados (tarefas) para requisição
+     * em caso de FALSE -> é renderizado a view
+     */
+    public function index(Request $request)
     {
-        // if (Auth::check()) {
-            if (isset(Auth::user()->id)) {
-                $tasks = Task::all()->where('user_id', Auth::user()->id);
-                return view('task.home');
-            }
-        // }
-        // return redirect()->route('login');
-    }
-
-    public function tasksJson()
-    {
-        // if (Auth::check()) {
-            if (isset(Auth::user()->id)) {
+        if (isset(Auth::user()->id)) {
+            if ($request->expectsJson()) {
                 return Task::all()->where('user_id', Auth::user()->id);
             }
-        // }
-        // return redirect()->route('login');
-    }
-
-    public function store(StoreTask $request)
-    {
-        $task = new Task();
-        $task->user_id = Auth::user()->id;
-        $task->descricao = $request->descricao;
-        $task->status = $request->status;
-        $task->data_executada = Carbon::createFromFormat('d/m/Y H:i:s',$request->data_executada);
-
-        if ($task->save()) {
-            return response()->json([
-                'sucesso' => TRUE
-            ]);
-        } else {
-            return response()->json([
-                'sucesso' => FALSE
-            ]);
+            return view('task.home');
         }
     }
 
+    /**
+     * Responsável por cadastrar as tarefas na base de dados
+     * e retorna um json
+     * 
+     * @param StoreTask $request
+     * StoreTask é um requestForm responsável pela validação de formulário
+     * 
+     */
+    public function store(StoreTask $request)
+    {
+        if ($request->isMethod('post')) {
+
+            if ($request->filled(['descricao', 'status'])) {
+
+                $task = new Task();
+                $task->user_id = Auth::user()->id;
+                $task->descricao = $request->descricao;
+                $task->status = $request->status;
+                $task->data_executada = (isset($request->data_executada)) ? Carbon::createFromFormat('d/m/Y H:i:s',$request->data_executada) : null;
+        
+                if ($task->save()) {
+                    return response()->json([
+                        'sucesso' => TRUE
+                    ]);
+                } else {
+                    return  response()->json([
+                        'sucesso' => FALSE
+                    ]);
+                }
+            }
+           
+        }
+    }
+
+    /**
+     * Responsável por deletar uma tarefa e retorna um json
+     * em caso de sucesso ou falha
+     * @param int $id
+     */
     public function delete(int $id)
     {
         $task = Task::findOrFail($id);
@@ -62,6 +76,11 @@ class TaskController extends Controller
         }
     }   
 
+    /**
+     * Responsável por atualizar a tarefa
+     * Retorna um json em caso de sucesso ou falha
+     * @param int $id
+     */
     public function update(int $id)
     {
         $task = Task::findOrFail($id);
