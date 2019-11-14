@@ -33,14 +33,14 @@ class TaskController extends Controller
 
     public function store(StoreTask $request)
     {
-        $dataCompleta = "$request->data $request->hora";
-        $dataFormat = new DateTime($dataCompleta);
+        // $dataCompleta = "$request->data $request->hora";
+        // $dataFormat = new DateTime($dataCompleta);
      
         $task = new Task();
         $task->user_id = Auth::user()->id;
         $task->descricao = $request->descricao;
         $task->status = $request->status;
-        $task->data_executada = $request->data_executada;
+        $task->data_executada = new DateTime($request->data_executada);
         // $task->data_executada = $dataFormat->format('Y/m/d H:i:s');
 
         if ($task->save()) {

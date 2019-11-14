@@ -119,6 +119,11 @@ $(function(){
         }
       })
     });
+
+
+    $('#data_executada').datepicker({
+
+    });
 })
 
 function carregarTarefas() {
