@@ -39,8 +39,8 @@ class TaskController extends Controller
         $task->user_id = Auth::user()->id;
         $task->descricao = $request->descricao;
         $task->status = $request->status;
-        // $task->data_executada = $request->data_executada;
-        $task->data_executada = $dataFormat->format('Y/m/d H:i:s');
+        $task->data_executada = $request->data_executada;
+        // $task->data_executada = $dataFormat->format('Y/m/d H:i:s');
 
         if ($task->save()) {
             return response()->json([

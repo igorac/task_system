@@ -70,11 +70,11 @@
 
             <div class="form-group">
               <label for="data_executada">Data Executada</label>
-              {{-- <input type="datetime-local" name="data_executada" id="data_executada" class="form-control" step="1"> --}}
-              <div class="row">
+              <input type="datetime-local" name="data_executada" id="data_executada" class="form-control" step="1">
+              {{-- <div class="row">
                 <input type="date" name="data" id="data" class="form-control col-sm-5 ml-3 mr-3">
                 <input type="time" name="hora" id="hora" class="form-control col-sm-3">
-              </div>
+              </div> --}}
             </div>
             
           </form>
