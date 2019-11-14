@@ -14,7 +14,6 @@ Route::get('/login/logout', 'AuthController@logout')->name('logout');
  */
 Route::middleware('auth')->group( function(){
     Route::get('/tasks', 'TaskController@index')->name('home');
-    Route::get('/tasks/json', 'TaskController@tasksJson')->name('home.json');
     Route::post('/task/store', 'TaskController@store')->name('task.store');
     Route::delete('/task/delete/{id}', 'TaskController@delete')->name('task.delete')->where(['id' => '[0-9]+']);
     route::put('/task/update/{id}', 'TaskController@update')->name('task.update')->where(['id' => '[0-9]+']);
