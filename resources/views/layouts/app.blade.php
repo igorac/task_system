@@ -14,7 +14,10 @@
     @yield('body')
    
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/task.js') }}"></script>
+    
+    @hasSection('javascript')
+        <script src="{{ asset('js/task.js') }}"></script>
+    @endif
     
 </body>
 </html>
