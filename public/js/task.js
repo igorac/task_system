@@ -121,8 +121,12 @@ $(function(){
     });
 
 
-    $('#data_executada').datepicker({
-
+    $('#data_executada').datetimepicker({
+      sideBySide: true,
+      locale: 'pt-br',
+      // maxDate: new Date(),
+      // minDate: new Date(),
+      format: 'DD/MM/YYYY HH:mm:ss',
     });
 })
 

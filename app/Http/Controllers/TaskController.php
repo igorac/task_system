@@ -7,6 +7,7 @@ use App\Task;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class TaskController extends Controller
 {
@@ -33,15 +34,11 @@ class TaskController extends Controller
 
     public function store(StoreTask $request)
     {
-        // $dataCompleta = "$request->data $request->hora";
-        // $dataFormat = new DateTime($dataCompleta);
-     
         $task = new Task();
         $task->user_id = Auth::user()->id;
         $task->descricao = $request->descricao;
         $task->status = $request->status;
-        $task->data_executada = new DateTime($request->data_executada);
-        // $task->data_executada = $dataFormat->format('Y/m/d H:i:s');
+        $task->data_executada = Carbon::createFromFormat('d/m/Y H:i:s',$request->data_executada);
 
         if ($task->save()) {
             return response()->json([
