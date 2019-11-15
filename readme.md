@@ -1,8 +1,9 @@
 ## Sobre aplicação
-É aplicação simples de crud de tarefas feita em Laravel com JQuery
+É uma aplicação simples de crud de tarefas feita em Laravel com JQuery
 
 ## Funcionalidade e Recursos
 - [x] Login com autenticação
+- [x] Usuário default do sistema
 - [x] Uso de um middleware para autenticação
 - [x] Validação de dados no cadastro e no login
 - [x] Cadastro de tarefas
@@ -39,7 +40,7 @@
     npm run dev
 ```
 
-4. Faz a copia o arquivo **.env** com o comando abaixo ou manualmente.
+4. Faz a copia do arquivo **.env** com o comando abaixo ou manualmente.
 ```
     php -r "copy('.env.example', '.env');"
 ```
@@ -56,7 +57,7 @@
     php artisan migrate:fresh
 ```
 
-8. Rode a seeder user com um usuário default (login: admin, senha: admin)
+8. Rode a seeder **UserSeeder**. Ela possui um usuário default (login: admin, senha: admin)
 ```
     php artisan db:seed --class=UserSeeder
 ```
