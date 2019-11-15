@@ -38,13 +38,13 @@ class TaskController extends Controller
     {
         if ($request->isMethod('post')) {
 
-            if ($request->filled(['descricao', 'status'])) {
+            if ($request->filled(['descricao', 'status', 'data_execucao'])) {
 
                 $task = new Task();
                 $task->user_id = Auth::user()->id;
                 $task->descricao = $request->descricao;
                 $task->status = $request->status;
-                $task->data_executada = (isset($request->data_executada)) ? Carbon::createFromFormat('d/m/Y H:i:s',$request->data_executada) : null;
+                $task->data_execucao = Carbon::createFromFormat('d/m/Y H:i:s',$request->data_execucao);
         
                 if ($task->save()) {
                     return response()->json([
@@ -71,8 +71,8 @@ class TaskController extends Controller
 
         if (is_numeric($id) || is_int($id)) {
             return ($task->delete()) ? 
-            response()->json([ 'sucesso' => TRUE ]) : 
-            response()->json([ 'sucesso' => FALSE ]);
+                response()->json([ 'sucesso' => TRUE ]) : 
+                response()->json([ 'sucesso' => FALSE ]);
         }
     }   
 
@@ -86,23 +86,11 @@ class TaskController extends Controller
         $task = Task::findOrFail($id);
         $status = (int) !$task->status;
         if (is_int($id) || is_numeric($id)) {
+            $task->status = $status;
 
-            if ($status === 1) {
-                $task->status = $status;
-                $task->data_executada = new DateTime(now());
-
-                return ($task->save()) ?
-                response()->json([ 'sucesso' => TRUE ]) :
+            return ($task->save()) ? 
+                response()->json([ 'sucesso' => TRUE ]) : 
                 response()->json([ 'sucesso' => FALSE ]);
-            } else {
-                $task->status = $status;
-                $task->data_executada = null;
-
-                return ($task->save()) ?
-                response()->json([ 'sucesso' => TRUE ]) :
-                response()->json([ 'sucesso' => FALSE ]);
-            }
-            
         }
     }
 }

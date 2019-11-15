@@ -14,14 +14,47 @@ $(function(){
     removerErrosFormValidation();
     $('#modalAddTask').modal('show');
     $('#formAddTask')[0].reset();
-    $('#data_executada').attr('disabled', true);
+    $('#data_execucao').attr('disabled', true);
   });
 
 
   // Responsável por alternar o disabled do input de data
+  // e o tipo de exibição da data
   $('#status').on('change', function(){
-    (this.value === "1") ? $('#data_executada').attr('disabled', false) : $('#data_executada').attr('disabled', true);
 
+    $('#data_execucao').attr('disabled', false);
+    
+
+    switch(this.value) {
+
+      
+      case "0": 
+        dateTimeWidget({
+          sideBySide: true,
+          locale: 'pt-br',
+          format: 'DD/MM/YYYY HH:mm:ss',
+          minDate: new Date()
+        })
+        break;
+
+      case "1":
+        dateTimeWidget({
+          sideBySide: true,
+          locale: 'pt-br',
+          format: 'DD/MM/YYYY HH:mm:ss',
+          maxDate: new Date(),
+        })
+        break;
+ 
+      default:
+          dateTimeWidget({
+            sideBySide: true,
+            locale: 'pt-br',
+            format: 'DD/MM/YYYY HH:mm:ss',
+          })
+        break;
+
+    }
   });
 
 
@@ -139,17 +172,17 @@ $(function(){
     })
   });
 
-
-  // Adicionando a biblioteca do datetimepicker
-  // no input
-  $('#input_data_executada').datetimepicker({
-    sideBySide: true,
-    locale: 'pt-br',
-    maxDate: new Date(), // Faz com que a data máxima para escolha seja a hora e dia atual
-    format: 'DD/MM/YYYY HH:mm:ss',
-  });
 })
 
+
+/**
+ * Responsável por reconstruir o dateTimePicker de acordo com o select
+ * @param {object} options 
+ */
+function dateTimeWidget(options) {
+  $('.input_data_execucao').datetimepicker('destroy');
+  $('.input_data_execucao').datetimepicker(options);
+}
 
 /**
  * Responsável por realizar uma consulta ao servidor
@@ -187,25 +220,27 @@ function montarTable(tasks) {
     $('.message-empty').hide('');
 
     $.each(tasks, (key, task) => {
-        let status = (task.status) ? 'Realizado' : 'Pendente';
-        let classStatus = (task.status) ? 'bg-purple' : 'bg-dark';
-        let classIcon   = (task.status) ? 'fa fa-pen-square' :'fa fa-check-square';
-        let data_executada = (task.data_executada === null) ? '' : moment(task.data_executada).format("DD/MM/YYYY HH:mm:ss");
-        let data_criacao = moment(task.data_criacao).format("DD/MM/YYYY HH:mm:ss");
 
-        $('#tasks').append(`
-            <tr data-row=${task.id}>
-            <td> ${task.id} </td>
-            <td> ${task.descricao} </td>
-            <td> ${data_criacao}</td>
-            <td> ${data_executada}</td>
-            <td><span class="badge text-white ${classStatus}"> ${status}</span></td>
-            <td>
-                <button type="button" class="btn btn-sm bg-purple text-white btn-delete" data-id=${task.id}><i class="fa fa-minus-square"></i></button>
-                <button type="button" class="btn btn-sm ${classStatus} text-white btn-check"  data-id=${task.id}><i class="${classIcon}"></i></button>
-            </td>
-            </tr>
-        `);
+      let status = (task.status) ? 'Realizado' : 'Pendente';
+      let classStatus = (task.status) ? 'bg-purple' : 'bg-dark';
+      let classIcon   = (task.status) ? 'fa fa-pen-square' :'fa fa-check-square';
+      let data_execucao = moment(task.data_execucao).format("DD/MM/YYYY HH:mm:ss");
+      let data_criacao = moment(task.data_criacao).format("DD/MM/YYYY HH:mm:ss");
+
+
+      $('#tasks').append(`
+          <tr data-row=${task.id}>
+          <td> ${task.id} </td>
+          <td> ${task.descricao} </td>
+          <td> ${data_criacao}</td>
+          <td> ${data_execucao}</td>
+          <td><span class="badge text-white ${classStatus}"> ${status}</span></td>
+          <td>
+              <button type="button" class="btn btn-sm bg-purple text-white btn-delete" data-id=${task.id}><i class="fa fa-minus-square"></i></button>
+              <button type="button" class="btn btn-sm ${classStatus} text-white btn-check"  data-id=${task.id}><i class="${classIcon}"></i></button>
+          </td>
+          </tr>
+      `);
     })
 
   } else {
@@ -256,6 +291,23 @@ function exibirErrosFormValidation(erros) {
                         .hide();
     }
 
+
+    if (erros.data_execucao) {
+      $('#data_execucao').addClass('is-invalid').removeClass('is-valid');
+
+      $('.msg-data_execucao').text(erros.data_execucao)
+                      .addClass('invalid-feedback')
+                      .removeClass('valid-feedback')
+                      .show();
+    } else {
+      $('#data_execucao').addClass('is-valid').removeClass('is-invalid');
+    
+      $('.msg-data_execucao').text('')
+                      .addClass('valid-feedback')
+                      .removeClass('invalid-feedback')
+                      .hide();
+    }
+
   }
 
 }
@@ -266,7 +318,7 @@ function exibirErrosFormValidation(erros) {
  * do bootstrap
  */
 function removerErrosFormValidation() {
-  let fields = [$('#descricao'), $('#status')];
+  let fields = [$('#descricao'), $('#status'), $('#data_execucao')];
 
   $.each(fields, (key, value) => {
       $(value).removeClass('is-invalid is-valid');

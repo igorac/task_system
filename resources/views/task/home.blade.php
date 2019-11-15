@@ -18,8 +18,8 @@
             <tr>
               <th>#</th>
               <th>Descrição</th>
-              <th>Data de Criação</th>
-              <th>Data executada</th>
+              <th>Dt. criação do lembrete</th>
+              <th>Dt. execução da tarefa</th>
               <th>Status</th>
               <th></th>
             </tr>
@@ -71,14 +71,16 @@
             </div>
 
             <div class="form-group">
-              <label for="data_executada">Data Executada</label>
+              <label for="data_executada">Data Execução</label>
               <div class="row">
-                <div class="input-group date col-6" id="input_data_executada" data-target-input="nearest">
-                  <input type="text" class="form-control datetimepicker-input" name="data_executada" id="data_executada" data-target="#input_data_executada"/>
-                  <div class="input-group-append" data-target="#input_data_executada" data-toggle="datetimepicker">
+                <div class="input-group date col-8 input_data_execucao" id="input_data_execucao" data-target-input="nearest">
+                  <input type="text" class="form-control datetimepicker-input" name="data_execucao" id="data_execucao" data-target="#input_data_execucao"/>
+                  <div class="input-group-append" data-target="#input_data_execucao" data-toggle="datetimepicker">
                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                   </div>
+                  <span class="form-text msg-data_execucao" style="display:none;"></span>
                 </div>
+                
               </div>
             </div>
             

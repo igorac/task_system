@@ -18,9 +18,10 @@ class CreateTasksTable extends Migration
             $table->string('descricao');
             $table->boolean('status')->default(0);
             $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')
+                  ->onDelete('cascade');
             $table->timestamp('data_criacao')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('data_executada')->nullable();
+            $table->timestamp('data_execucao')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }
 

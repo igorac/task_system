@@ -16,7 +16,8 @@ class TaskSeeder extends Seeder
             'descricao' => 'Tomar Banho',
             'status' => 0,
             'user_id' => 1,
-            'data_criacao' => now()
+            'data_criacao' => now(),
+            'data_execucao' => now()
         ]);
 
         DB::table('tasks')->insert([
@@ -24,7 +25,7 @@ class TaskSeeder extends Seeder
             'status' => 1,
             'user_id' => 1,
             'data_criacao' => now(),
-            'data_executada' => now()
+            'data_execucao' => now()
         ]);
     }
 }

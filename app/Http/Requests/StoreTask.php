@@ -25,7 +25,8 @@ class StoreTask extends FormRequest
     {
         return [
             'descricao' => 'bail|required|min:3|max:50',
-            'status'    => 'bail|required'
+            'status'    => 'bail|required',
+            'data_execucao' => 'bail|required',
         ];
     }
 
@@ -33,7 +34,8 @@ class StoreTask extends FormRequest
     {
         return [
             'descricao' => 'Descrição',
-            'status' => 'Status'
+            'status' => 'Status',
+            'data_execucao' => 'Data de execução'
         ];
     }
 }
