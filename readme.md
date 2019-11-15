@@ -2,7 +2,7 @@
 É aplicação simples de crud de tarefas feita em Laravel com JQuery
 
 ## Funcionalidade e Recursos
-- [x] Login com autentição
+- [x] Login com autenticação
 - [x] Uso de um middleware para autenticação
 - [x] Validação de dados no cadastro e no login
 - [x] Cadastro de tarefas
@@ -26,7 +26,7 @@
 
 1. Clone o projeto com git hub ou Download zip
 
-* Rode os comandos os comandos abaixo no terminal de sua preferência, na raiz do projeto
+* Rode os comandos os comandos abaixo no **terminal de sua preferência**, na **raiz do projeto**
 
 2. Roda o composer install
 ```
@@ -68,7 +68,7 @@
 
 10. Acesse a rota **/login**
 
-11. Acesse o **arquivo de rotas** para ter uma noção dos caminhos da rotas
+11. Acesse o **arquivo de rotas** para ter uma noção dos caminhos das rotas
       Path => **./routes/web.php**
 
 
