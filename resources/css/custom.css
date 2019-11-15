@@ -50,3 +50,7 @@
 .text-username {
   text-transform: capitalize;
 }
+
+.width-td {
+  width: 100px;
+}

@@ -77,16 +77,15 @@ class TaskController extends Controller
     }   
 
     /**
-     * Responsável por atualizar a tarefa
+     * Responsável por marcar a tarefa como realizada
      * Retorna um json em caso de sucesso ou falha
      * @param int $id
      */
     public function update(int $id)
     {
         $task = Task::findOrFail($id);
-        $status = (int) !$task->status;
         if (is_int($id) || is_numeric($id)) {
-            $task->status = $status;
+            $task->status = 1;
 
             return ($task->save()) ? 
                 response()->json([ 'sucesso' => TRUE ]) : 

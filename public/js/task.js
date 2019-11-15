@@ -223,10 +223,9 @@ function montarTable(tasks) {
 
       let status = (task.status) ? 'Realizado' : 'Pendente';
       let classStatus = (task.status) ? 'bg-purple' : 'bg-dark';
-      let classIcon   = (task.status) ? 'fa fa-pen-square' :'fa fa-check-square';
       let data_execucao = moment(task.data_execucao).format("DD/MM/YYYY HH:mm:ss");
       let data_criacao = moment(task.data_criacao).format("DD/MM/YYYY HH:mm:ss");
-
+      let displayButtonStatus = (task.status) ? 'd-none' : '';
 
       $('#tasks').append(`
           <tr data-row=${task.id}>
@@ -235,9 +234,9 @@ function montarTable(tasks) {
           <td> ${data_criacao}</td>
           <td> ${data_execucao}</td>
           <td><span class="badge text-white ${classStatus}"> ${status}</span></td>
-          <td>
+          <td class="width-td">
               <button type="button" class="btn btn-sm bg-purple text-white btn-delete" data-id=${task.id}><i class="fa fa-minus-square"></i></button>
-              <button type="button" class="btn btn-sm ${classStatus} text-white btn-check"  data-id=${task.id}><i class="${classIcon}"></i></button>
+              <button type="button" class="btn btn-sm ${classStatus} ${displayButtonStatus} text-white btn-check"  data-id=${task.id}><i class="fa fa-check-square"></i></button>
           </td>
           </tr>
       `);
